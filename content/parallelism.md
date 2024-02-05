@@ -2,13 +2,17 @@
 tags: [ecosystem]
 ---
 
+
 # Concurrency, Parallelism, and Distributed Systems
+
 
 Concurrency refers to running multiple computations and switching from one to the other rapidly (green threads),
 whereas parallelism refers to using multiple OS-level threads to coordinate computation.
 Since OCaml 5.0, OCaml supports concurrency with the Effect system and parallelism with Domains.
 
+
 ## Concurrency
+
 
 * [eio](https://github.com/ocaml-multicore/eio):
 A concurrency library using the OCaml effect system.
@@ -34,24 +38,33 @@ Riot is an in-development library to support actor-based processing (similar to 
 on OCaml 5.0.
 * [LUV](https://github.com/aantron/luv):
 Bindings to [libuv](https://github.com/libuv/libuv),
-an event loop-based system that runs `node.io`.
+an event loop-based system that runs `node‧io`.
 This is also a replacement for the `Unix` module,
 allowing for full process control in a system-independent manner.
+* [miou](https://github.com/robur-coop/miou)
+Miou is a simple scheduler (in beta) for OCaml 5 to run concurrent and/or parallel tasks.
 
 ### Articles
+
 
 * [The blog post that introduced Async](https://blog.janestreet.com/announcing-async/)
 * [A user gives up on Async](http://rgrinberg.com/posts/abandoning-async/)
 * [Cooperative Concurrency in OCaml][cooperative concurrency]: Using Async
+* [The core of Miou](https://blog.osau.re/articles/miou.html) & [Rules of Miou](https://blog.osau.re/articles/miou_rules.html)
+
 
 [cooperative concurrency]: https://philtomson.github.io/blog/2014-07-09-cooperative-concurrency-in-ocaml-a-core.std.async-example/
 
+
 ## Parallelism
+
 
 ### Domain (thread)-based Parallelism
 
+
 OCaml 5.0 introduced `domains`, which roughly map to the number of cores in a CPU.
 They allow for true parallelism in OCaml.
+
 
 * [Parallel Programming in Multicore OCaml](https://github.com/ocaml-multicore/parallel-programming-in-multicore-ocaml):
 great article on using the OCaml's multicore capabilities.
@@ -61,10 +74,15 @@ of parallelism easier for average programmers.
 * [MoonPool](https://github.com/c-cube/moonpool):
 Thread pools with work-stealing for domains.
 
+
+
+
 ### Process-Level Parallelism
+
 
 Pre-5.0, OCaml supported parallelism only by running multiple processes.
 This option still exists and is supported by many libraries.
+
 
 * [Parmap](http://rdicosmo.github.io/parmap/):
 Provides easy-to-use parallel map and fold functions.
@@ -83,7 +101,7 @@ Similar to Parmap above.
 * By interfacing with external C code through the FFI,
 OCaml can pass off long-running computations to C threads running at the
 same time as OCaml code.
-This is made easier nowadays due to CTypes (see [ffi](ffi.md))
+This is made easier nowadays due to CTypes (see [ffi](ffi‧md))
 * [Nproc](https://github.com/MyLifeLabs/nproc):
 A process pool implementation for OCaml using lwt.
 Rather than creating or forking processes as needed, preallocates them
@@ -95,11 +113,14 @@ This is the most powerful implementation of parellelism currently available for 
 as it is capable of creating a shared memory region,
 and running a *custom-made garbage collector* on said region.
 
+
 ## Distributed Computing
+
 
 Distributed computing is similar to process-based parallelism, except that the child
 processes may or may not be on remote machines.
 Therefore, distributed computing libraries generally also perform parallelism on the same machine as well.
+
 
 * [Rpc.Parallel](https://github.com/janestreet/rpc_parallel):
 a library for spawning processes on a cluster of machines, and passing typed messages between them.
@@ -114,6 +135,7 @@ message Passing Interface bindings for OCaml.
 light library to deal with RPCs in OCaml.
 * [distributed](https://github.com/essdotteedot/distributed):
 Library for distributed computation in OCaml.
+
 
 Similar to Erlang's model and inspired by Cloud Haskell.
 * [reactor](https://github.com/ostera/reactor) (alpha):
